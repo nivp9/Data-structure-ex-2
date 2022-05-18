@@ -10,11 +10,15 @@ public class DoubleHashTable extends OAHashTable {
 		super(m);
 		this.p = p;
 		hashFunc=ModHash.GetFunc(m,p);
-		secondHashFunc=ModHash.GetFunc(m,p);
+		secondHashFunc=ModHash.GetFunc(m-1,p);
 	}
 	@Override
 	public int Hash(long x, int i) {
-		return (hashFunc.Hash(x)+ i*secondHashFunc.Hash(x))%tableSize;
+		int z= (hashFunc.Hash(x)+ (i)*((secondHashFunc.Hash(x)+1)))%tableSize;
+		if(z<0) {
+			z += tableSize;
+		}
+		return z;
 	}
 	
 }

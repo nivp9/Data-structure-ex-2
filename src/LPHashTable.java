@@ -11,7 +11,11 @@ public class LPHashTable extends OAHashTable {
 	
 	@Override
 	public int Hash(long x, int i) {
-		return (hashFunc.Hash(x)+i)%tableSize;
+		int z= (hashFunc.Hash(x)+i)%tableSize;
+		if(z<0) {
+			z += tableSize;
+		}
+		return z;
 	}
 	
 }

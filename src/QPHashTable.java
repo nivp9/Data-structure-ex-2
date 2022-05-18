@@ -10,6 +10,10 @@ public class QPHashTable extends OAHashTable {
 	}
 	@Override
 	public int Hash(long x, int i) {
-		return (hashFunc.Hash(x) + (int)Math.pow(i,2))%tableSize;
+		int z= (hashFunc.Hash(x) + (int)Math.pow(i,2))%tableSize;
+		if(z<0) {
+			z += tableSize;
+		}
+		return z;
 	}
 }
