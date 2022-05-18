@@ -1,16 +1,20 @@
 import java.util.Random;
 
 public class DoubleHashTable extends OAHashTable {
-	
+
+	private ModHash hashFunc;
+	private ModHash secondHashFunc;
+
+	private long p;
 	public DoubleHashTable(int m, long p) {
 		super(m);
-		// TODO Complete hash table constructor.
+		this.p = p;
+		hashFunc=ModHash.GetFunc(m,p);
+		secondHashFunc=ModHash.GetFunc(m,p);
 	}
-	
 	@Override
 	public int Hash(long x, int i) {
-		// TODO implement hash function
-		return 0;
+		return (hashFunc.Hash(x)+ i*secondHashFunc.Hash(x))%tableSize;
 	}
 	
 }

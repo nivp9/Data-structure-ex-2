@@ -113,7 +113,10 @@ public class Test {
                         e2 = e.getClass().getName();
                     }
                 }
-                if (e1 != e2) { System.out.println("FAILED: insert, e1 != e2: " + e1 + ", " + e2); return false; }
+                if (!e1.equals(e2)) {
+                    System.out.println("FAILED: insert, e1 != e2: " + e1 + ", " + e2);
+                    return false;
+                }
             } else if (randomOperation == 1) {
                 if (VERBOSE) System.out.println("         delete " + key);
                 // delete

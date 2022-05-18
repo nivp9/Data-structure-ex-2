@@ -3,11 +3,12 @@ public abstract class OAHashTable implements IHashTable {
 	
 	private HashTableElement [] table;
 	protected int tableSize;
+
 	public OAHashTable(int m) {
 		this.table = new HashTableElement[m];
 		tableSize=m;
-		// TODO add to constructor as needed
 	}
+
 
 	private int findIndex(long key){
 		for(int i = 0; i<tableSize; i++){
