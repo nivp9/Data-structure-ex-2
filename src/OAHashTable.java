@@ -10,19 +10,6 @@ public abstract class OAHashTable implements IHashTable {
     }
 
 
-    private int findIndex(long key) {
-        for (int i = 0; i < tableSize; i++) {
-            int j = Hash(key, i);
-            if (table[j] != null && table[j].GetKey() == key) {
-                return j;
-            }
-            if (table[j] == null) {
-                return -1;
-            }
-        }
-        return -1;
-    }
-
     @Override
     public HashTableElement Find(long key) {
         int res = findIndex(key);
@@ -42,7 +29,7 @@ public abstract class OAHashTable implements IHashTable {
             if (table[j].GetKey() == -1 && insertionIndex == null) {
                 insertionIndex = j;
             } else if (table[j].GetKey() == key) {
-                throw new KeyAlreadyExistsException(hte);    // todo: return hte or table[j]?
+                throw new KeyAlreadyExistsException(hte);
             }
         }
         if (insertionIndex != null) {
@@ -66,4 +53,18 @@ public abstract class OAHashTable implements IHashTable {
      * @return the index into the hash table to place the key x
      */
     public abstract int Hash(long x, int i);
+
+
+    private int findIndex(long key) {
+        for (int i = 0; i < tableSize; i++) {
+            int j = Hash(key, i);
+            if (table[j] != null && table[j].GetKey() == key) {
+                return j;
+            }
+            if (table[j] == null) {
+                return -1;
+            }
+        }
+        return -1;
+    }
 }
